@@ -1,9 +1,13 @@
+import RestaurantCard from "@/components/RestaurantCard";
 import React from "react";
 
 type Restaurant = {
   id: string;
   name: string;
   rating: number;
+  review_count: number;
+  image_url: string;
+  url: string;
 };
 
 export default function DisplayRestaurants({
@@ -29,10 +33,16 @@ export default function DisplayRestaurants({
       <h1>Testing getServerSideProps with Yelp api</h1>
       <h2>Location: {location}</h2>
       <h2>Term: {term}</h2>
-      <ul>
+      <ul className="flex flex-col gap-2">
         {data.businesses.map((item: Restaurant) => (
           <li key={item.id}>
-            Name: {item.name} Ranking: {item.rating}
+            <RestaurantCard
+              name={item.name}
+              imageUrl={item.image_url}
+              url={item.url}
+              rating={item.rating}
+              reviews={item.review_count}
+            />
           </li>
         ))}
       </ul>
