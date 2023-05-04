@@ -61,8 +61,7 @@ export async function getServerSideProps({
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization:
-        "Bearer 6kX-SV6hwZt-THNp5K-ER4DL8wRTp8o7SewY0AiV-cRAY03QhtjWxLShEpQK2W7Y0mXqpCbVVIsXH4te0mDXrhehBksFy5qI4-X3kaSnkJx5hAVC2sCDbSYiO3xQZHYx",
+      authorization: process.env.API_AUTH as string,
     },
   };
   const url = `https://api.yelp.com/v3/businesses/search?${location}&term=${term}&categories=restaurant&open_now=true&sort_by=best_match&limit=20`;
