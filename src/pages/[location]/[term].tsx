@@ -30,9 +30,7 @@ export default function DisplayRestaurants({
   console.log(`Data: ${JSON.stringify(data)}`);
   return (
     <>
-      <h1>Testing getServerSideProps with Yelp api</h1>
-      <h2>Location: {location}</h2>
-      <h2>Term: {term}</h2>
+      <h1>Rank these {term} restaurants!</h1>
       <ul className="flex flex-col gap-2">
         {data.businesses.map((item: Restaurant) => (
           <li key={item.id}>
