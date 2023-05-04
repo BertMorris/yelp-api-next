@@ -1,3 +1,42 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* **** PICKING CUISINE ***** */
+li {
+  list-style: none;
+}
+
+.title {
+  text-align: center;
+}
+.cuisine__list {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 2em;
+}
+
+.cuisine {
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.cuisine__title {
+  font-size: 2rem;
+}
+
+.cuisine__btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.cuisine__btn {
+  padding: 0.25rem;
+}
+
+.side-by-side {
+  display: flex;
+  gap: 2rem;
+}

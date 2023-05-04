@@ -39,8 +39,6 @@ export default function Home() {
     setTerm(word);
   }
 
-  function handleGetRestaurants() {}
-
   return (
     <div>
       <h1>
@@ -50,7 +48,7 @@ export default function Home() {
         Lat: {userLocation?.lat ?? "no latitude data"} Long:{" "}
         {userLocation?.long ?? "no long data"}
       </h2>
-      <div>
+      {/* <div>
         <button
           className={`p-2 border-2 ${term === "mexican" && "bg-slate-400"}`}
           type="button"
@@ -72,11 +70,11 @@ export default function Home() {
         >
           Pub
         </button>
-      </div>
+      </div> */}
       <Link
-        href={`/latitude=${userLocation?.lat}&longitude=${userLocation?.long}/${term}`}
+        href={`/latitude=${userLocation?.lat}&longitude=${userLocation?.long}`}
       >
-        Get restaurants
+        Choose Cuisine
       </Link>
     </div>
   );
