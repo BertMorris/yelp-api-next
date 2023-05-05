@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import CuisineCard from "./CuisineCard";
 import { useRouter } from "next/router";
-import CuisineDndList from "./CuisineDndList";
+import CuisineDndList from "../../components/CuisineDndList";
 
 const CUISINES = [
   "American",

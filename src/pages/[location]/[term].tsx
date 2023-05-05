@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import RestaurantCard from "./RestaurantCard";
-import RestaurantDndList from "./RestaurantDndList";
+import RestaurantDndList from "../../components/RestaurantDndList";
 import { useRouter } from "next/router";
 
 type Restaurant = {
