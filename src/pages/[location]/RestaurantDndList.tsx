@@ -1,34 +1,31 @@
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
-import CuisineDndCard from "./CuisineDndCard";
+import RestaurantCard from "./RestaurantCard";
 
-type Props = {
-  itemList: string[];
-  setItemList: React.Dispatch<React.SetStateAction<string[]>>;
+type Restaurant = {
+  id: string;
+  name: string;
+  image_url: string;
+  url: string;
+  rating: number;
+  review_count: number;
 };
 
-export default function CuisineDndList({ itemList, setItemList }: Props) {
-  const cuisines = [
-    "American",
-    "Italian",
-    "French",
-    "Chinese",
-    "Mexican",
-    "Thai",
-    "Vegetarian",
-    "Mediterranean",
-    "Indian",
-  ];
+type Props = {
+  itemList: Restaurant[];
+  setItemList: React.Dispatch<React.SetStateAction<Restaurant[]>>;
+};
 
-  // Function to update list on drop
+export default function App({ itemList, setItemList }: Props) {
+  // update list on drop
   const handleDrop = (droppedItem: any) => {
-    // Ignore drop outside droppable container
+    // ignore drop outside droppable container
     if (!droppedItem.destination) return;
     const updatedList = [...itemList];
-    // Remove dragged item
+    // remove dragged item
     const [reorderedItem] = updatedList.splice(droppedItem.source.index, 1);
-    // Add dropped item
+    // add dropped item
     updatedList.splice(droppedItem.destination.index, 0, reorderedItem);
-    // Update State
+    // update list
     setItemList(updatedList);
   };
 
@@ -43,7 +40,7 @@ export default function CuisineDndList({ itemList, setItemList }: Props) {
               ref={provided.innerRef}
             >
               {itemList.map((item, index) => (
-                <Draggable key={item} draggableId={item} index={index}>
+                <Draggable key={item.id} draggableId={item.id} index={index}>
                   {(provided) => (
                     <div
                       className="item-container"
@@ -51,7 +48,7 @@ export default function CuisineDndList({ itemList, setItemList }: Props) {
                       {...provided.dragHandleProps}
                       {...provided.draggableProps}
                     >
-                      <CuisineDndCard item={item} />
+                      <RestaurantCard restaurant={item} />
                     </div>
                   )}
                 </Draggable>

@@ -21,6 +21,9 @@ export default function Cuisines({}: Props) {
   const [leftList, setLeftList] = useState<string[]>(CUISINES);
   const [rightList, setRightList] = useState<string[]>(CUISINES);
 
+  const result = getResults();
+  const localChoices = getLocalChoices();
+
   // const rankings = leftList.reduce((currentValue, currentIndex) => ({
   //   ...object,
   //   [key]: [],
@@ -87,7 +90,12 @@ export default function Cuisines({}: Props) {
 
   function getRestaurants() {
     console.log(`Left: ${leftList} Right:${rightList}`);
-    console.log(getResults());
+    console.log(result);
+    router.push(
+      `/${localChoices?.location}&radius=${
+        localChoices?.radius
+      }&price=${localChoices?.prices.join("&price=")}/${result}`
+    );
   }
 
   // function getRestaurants() {
@@ -109,11 +117,7 @@ export default function Cuisines({}: Props) {
   //     );
   //     const result =
   //       remainingCuisines[Math.floor(Math.random() * remainingCuisines.length)];
-  //     router.push(
-  //       `/${localChoices?.location}&radius=${
-  //         localChoices?.radius
-  //       }&price=${localChoices?.prices.join("&price=")}/${result}`
-  //     );
+  //
   //   }
   // }
 

@@ -70,6 +70,7 @@ li {
   gap: 1rem;
 }
 
+/* **** CUISINE CARD **** */
 .cuisine-card {
   border-radius: 10px;
   padding: 1rem;
@@ -85,6 +86,35 @@ li {
   font-size: 2rem;
 }
 
+/* **** RESTAURANT CARD ***** */
+.rest-card {
+  display: flex;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 1px rgb(165, 164, 164);
+}
+
+.rest-card__image {
+  border-radius: 10px 0 0 10px;
+}
+
+.rest-card__info {
+  padding: 0 1rem;
+}
+
+.rest-card__title {
+}
+
+.rest-card__yelp {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rest-card__link {
+  padding: 0 2rem;
+}
+
+/* **** DRAG AND DROP SORTABLE LIST **** */
 .list-container {
   width: 40rem;
   display: flex;
