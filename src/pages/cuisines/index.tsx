@@ -90,6 +90,7 @@ export default function Cuisines({}: Props) {
   function getRestaurants() {
     console.log(`Left: ${leftList} Right:${rightList}`);
     console.log(result);
+    console.log(`Local Choices: ${JSON.stringify(localChoices)}`);
     router.push(
       `/${localChoices?.location}&radius=${
         localChoices?.radius
