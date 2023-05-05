@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import RestaurantDndList from "../../components/RestaurantDndList";
+import RestaurantDndList from "../../../components/RestaurantDndList";
 import { useRouter } from "next/router";
 
 type Restaurant = {
@@ -12,16 +12,10 @@ type Restaurant = {
 };
 
 export default function DisplayRestaurants({
-  params,
-  location,
-  term,
-  res,
+  cuisine,
   data,
 }: {
-  params: any;
-  location: any;
-  term: any;
-  res: any;
+  cuisine: string;
   data: any;
 }) {
   const [leftList, setLeftList] = useState(data.businesses);
@@ -88,7 +82,7 @@ export default function DisplayRestaurants({
 
   return (
     <>
-      <h1>Rank these {term} restaurants!</h1>
+      <h1>Rank these {cuisine} restaurants!</h1>
       <button className="navigate-btn" onClick={getRestaurant}>
         Get Result
       </button>
@@ -113,10 +107,10 @@ export default function DisplayRestaurants({
 export async function getServerSideProps({
   params,
 }: {
-  params: { location: string; term: string };
+  params: { searchOptions: string; cuisine: string };
 }) {
-  const location = params.location;
-  const term = params.term;
+  const searchOptions = params.searchOptions;
+  const cuisine = params.cuisine;
   const options = {
     method: "GET",
     headers: {
@@ -124,10 +118,12 @@ export async function getServerSideProps({
       Authorization: `Bearer ${process.env.API_AUTH}`,
     },
   };
-  const url = `https://api.yelp.com/v3/businesses/search?${location}&term=${term}&categories=restaurant&open_now=true&sort_by=best_match&limit=20`;
-
+  const url = `https://api.yelp.com/v3/businesses/search?${searchOptions}&term=${cuisine}&categories=restaurant&sort_by=best_match&limit=10`;
+  console.log(url);
   const response = await fetch(url, options);
   const data = await response.json();
 
-  return { props: { params, location, term, data } };
+  console.log(data);
+
+  return { props: { cuisine, data } };
 }

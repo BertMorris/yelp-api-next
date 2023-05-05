@@ -20,15 +20,15 @@ export default function Cuisines({}: Props) {
   const [leftList, setLeftList] = useState<string[]>(CUISINES);
   const [rightList, setRightList] = useState<string[]>(CUISINES);
 
+  const router = useRouter();
+  const { searchOptions } = router.query;
   const result = getResults();
-  const localChoices = getLocalChoices();
+  // const localChoices = getLocalChoices();
 
   // const rankings = leftList.reduce((currentValue, currentIndex) => ({
   //   ...object,
   //   [key]: [],
   // }));
-
-  const router = useRouter();
 
   // function isDisabled() {
   //   if (left.includes("") || right.includes("")) {
@@ -36,15 +36,15 @@ export default function Cuisines({}: Props) {
   //   } else return false;
   // }
 
-  function getLocalChoices() {
-    if (typeof window !== "undefined") {
-      const location = localStorage.getItem("location");
-      const radius = Number(localStorage.getItem("radius")) * 1609;
-      const prices = JSON.parse(localStorage.getItem("price") ?? "");
+  // function getLocalChoices() {
+  //   if (typeof window !== "undefined") {
+  //     const location = localStorage.getItem("location");
+  //     const radius = Number(localStorage.getItem("radius")) * 1609;
+  //     const prices = JSON.parse(localStorage.getItem("price") ?? "");
 
-      return { location, radius, prices };
-    }
-  }
+  //     return { location, radius, prices };
+  //   }
+  // }
 
   function getResults() {
     // transform ranking array into object
@@ -90,12 +90,8 @@ export default function Cuisines({}: Props) {
   function getRestaurants() {
     console.log(`Left: ${leftList} Right:${rightList}`);
     console.log(result);
-    console.log(`Local Choices: ${JSON.stringify(localChoices)}`);
-    router.push(
-      `/${localChoices?.location}&radius=${
-        localChoices?.radius
-      }&price=${localChoices?.prices.join("&price=")}/${result}`
-    );
+    console.log(`Search Options: ${searchOptions}`);
+    router.push(`/${searchOptions}/${result}`);
   }
 
   // function getRestaurants() {

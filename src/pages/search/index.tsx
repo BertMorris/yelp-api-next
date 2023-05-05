@@ -2,11 +2,16 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 
 type Props = {};
+type Coords = {
+  lat: number;
+  long: number;
+};
 
 export default function SearchOptions({}: Props) {
-  const [location, setLocation] = useState("");
+  const [coordLocation, setCoordLocation] = useState<Coords | null>(null);
+  const [stringLocation, setStringLocation] = useState<string | null>(null);
   const [selectedRadius, setSelectedRadius] = useState(1);
-  const [selectedPrices, setSelectedPrices] = useState<number[]>([]);
+  const [selectedPrices, setSelectedPrices] = useState<number[]>([1, 2, 3, 4]);
 
   const router = useRouter();
 
@@ -14,9 +19,10 @@ export default function SearchOptions({}: Props) {
     const successCallback = (position: GeolocationPosition) => {
       console.log("getLocation success callback triggered");
       console.log(position);
-      setLocation(
-        `latitude=${position.coords.latitude}&longitude=${position.coords.longitude}`
-      );
+      setCoordLocation({
+        lat: position.coords.latitude,
+        long: position.coords.longitude,
+      });
     };
     const errorCallback = () =>
       console.log("An error occurred getting the users location");
@@ -43,7 +49,7 @@ export default function SearchOptions({}: Props) {
   };
 
   const handleLocationChange = (event: any) => {
-    setLocation(event.target.value);
+    setStringLocation(event.target.value);
     console.log(event.target.value);
   };
 
@@ -53,13 +59,30 @@ export default function SearchOptions({}: Props) {
   };
 
   const handleRankCuisines = () => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("location", location);
-      localStorage.setItem("radius", selectedRadius.toString());
-      localStorage.setItem("price", JSON.stringify(selectedPrices));
-    }
+    // if (typeof window !== "undefined") {
+    //   localStorage.setItem("location", location);
+    //   localStorage.setItem("radius", selectedRadius.toString());
+    //   localStorage.setItem("price", JSON.stringify(selectedPrices));
+    // }
+    const locationString = () => {
+      console.log("Converting location data to url string");
+      if (coordLocation) {
+        console.log("Using coords location");
+        return `latitude=${coordLocation.lat}&longitude=${coordLocation.long}`;
+      } else if (stringLocation) {
+        console.log("Using string locaton");
+        return `location=${encodeURIComponent(stringLocation)}`;
+      }
+    };
 
-    router.push("/cuisines");
+    const optionsString = `&radius=${
+      selectedRadius * 1609
+    }&price=${selectedPrices.join("&price=")}`;
+
+    console.log(locationString());
+    console.log(optionsString);
+    console.log(`${locationString()}${optionsString}`);
+    router.push(`${locationString()}${optionsString}`);
   };
 
   return (
@@ -76,7 +99,7 @@ export default function SearchOptions({}: Props) {
           id="location"
           name="location"
           placeholder="e.g. New York City"
-          value={location}
+          value={stringLocation ?? ""}
           onChange={handleLocationChange}
         />
         <label htmlFor="radius">Search Radius:</label>
