@@ -66,7 +66,8 @@ export default function Cuisines({}: Props) {
 
   return (
     <div className="cuisine__chooser">
-      <h1 className="title">Pick your top cuisines!</h1>
+      <h1 className="title">Pick your Top Cuisines!</h1>
+      <center>
       <button
         className="navigate-btn"
         onClick={getRestaurants}
@@ -74,6 +75,7 @@ export default function Cuisines({}: Props) {
       >
         Get Restaurants
       </button>
+      </center>
 
       <div className="side-by-side">
         <ul className="cuisine__list">
