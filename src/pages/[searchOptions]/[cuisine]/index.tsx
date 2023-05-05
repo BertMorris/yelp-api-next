@@ -20,8 +20,7 @@ export default function DisplayRestaurants({
 }) {
   const [leftList, setLeftList] = useState(data.businesses);
   const [rightList, setRightList] = useState(data.businesses);
-  const [leftUserLocked, setLeftUserLocked] = useState(false);
-  const [rightUserLocked, setRightUserLocked] = useState(false);
+  const [currentUser, setCurrentUser] = useState("left");
 
   const router = useRouter();
 
@@ -75,38 +74,26 @@ export default function DisplayRestaurants({
     router.push(`/result/${result}`);
   }
 
-  return (
-    <>
-      <h1 className="title">Rank these {cuisine} restaurants!</h1>
-      <div className="lock-btn-group">
-        <button
-          className="action-btn"
-          type="button"
-          onClick={() => setLeftUserLocked(true)}
-        >
-          Lock in
-        </button>
-        <button
-          className="navigate-btn"
-          disabled={!(leftUserLocked && rightUserLocked)}
-          onClick={getRestaurant}
-        >
-          Get Result
-        </button>
-        <button
-          className="action-btn"
-          type="button"
-          onClick={() => setRightUserLocked(true)}
-        >
-          Lock in
-        </button>
-      </div>
+  function handleClick() {
+    if (currentUser === "left") {
+      setCurrentUser("right");
+    } else getRestaurant();
+  }
 
-      <div className="side-by-side">
+  return (
+    <div className="restaurant__chooser">
+      <header>
+        <h1 className="title">Rank these {cuisine} restaurants!</h1>
+        <button className="action-btn" type="button" onClick={handleClick}>
+          {currentUser === "left" ? "Next User" : "Get Result"}
+        </button>
+      </header>
+      {currentUser === "left" ? (
         <RestaurantDndList itemList={leftList} setItemList={setLeftList} />
+      ) : (
         <RestaurantDndList itemList={rightList} setItemList={setRightList} />
-      </div>
-    </>
+      )}
+    </div>
   );
 }
 
