@@ -57,86 +57,34 @@ export default function SearchOptions({}: Props) {
   };
 
   const handleRankCuisines = () => {
-    // if (typeof window !== "undefined") {
-    //   localStorage.setItem("location", location);
-    //   localStorage.setItem("radius", selectedRadius.toString());
-    //   localStorage.setItem("price", JSON.stringify(selectedPrices));
-    // }
-    const locationString = () => {
-      console.log("Converting location data to url string");
-      if (coordLocation) {
-        console.log("Using coords location");
-        return `latitude=${coordLocation.lat}&longitude=${coordLocation.long}`;
-      } else if (stringLocation) {
-        console.log("Using string locaton");
-        return `location=${encodeURIComponent(stringLocation)}`;
+    if (coordLocation || stringLocation) {
+      if (selectedPrices.length === 0) {
+        alert("Please select at least one price level");
+      } else {
+        const locationString = () => {
+          console.log("Converting location data to url string");
+          if (coordLocation) {
+            console.log("Using coords location");
+            return `latitude=${coordLocation.lat}&longitude=${coordLocation.long}`;
+          } else if (stringLocation) {
+            console.log("Using string locaton");
+            return `location=${encodeURIComponent(stringLocation)}`;
+          } else return null;
+        };
+
+        const optionsString = `&radius=${
+          selectedRadius * 1609
+        }&price=${selectedPrices.join("&price=")}`;
+
+        console.log(locationString());
+        console.log(optionsString);
+        console.log(`${locationString()}${optionsString}`);
+
+        router.push(`${locationString()}${optionsString}`);
       }
-    };
-
-    const optionsString = `&radius=${
-      selectedRadius * 1609
-    }&price=${selectedPrices.join("&price=")}`;
-
-    console.log(locationString());
-    console.log(optionsString);
-    console.log(`${locationString()}${optionsString}`);
-    router.push(`${locationString()}${optionsString}`);
-  };
-
-  const EnterLocation = ({
-    stringLocation,
-    handleLocationChange,
-  }: {
-    stringLocation: string;
-    handleLocationChange: ChangeEventHandler<HTMLInputElement>;
-  }) => {
-    return (
-      <div>
-        <label className="offscreen" htmlFor="location">
-          Enter Location:
-        </label>
-        <input
-          className="location__input"
-          type="text"
-          id="location"
-          name="location"
-          placeholder="City, State or Zip"
-          value={stringLocation ?? ""}
-          onChange={handleLocationChange}
-        />
-      </div>
-    );
-  };
-
-  const LocationOptions = ({
-    getLocation,
-    stringLocation,
-    handleLocationChange,
-  }: {
-    getLocation: MouseEventHandler<HTMLButtonElement>;
-    stringLocation: string | null;
-    handleLocationChange: ChangeEventHandler<HTMLInputElement>;
-  }) => {
-    return (
-      <div className="options__location">
-        <button className="action-btn" type="button" onClick={getLocation}>
-          Get Location
-        </button>
-        <span> or </span>
-        <label className="offscreen" htmlFor="location">
-          Enter Location:
-        </label>
-        <input
-          className="location__input"
-          type="text"
-          id="location"
-          name="location"
-          placeholder="City, State or Zip"
-          value={stringLocation ?? ""}
-          onChange={handleLocationChange}
-        />
-      </div>
-    );
+    } else {
+      alert("Please provide a location");
+    }
   };
 
   return (

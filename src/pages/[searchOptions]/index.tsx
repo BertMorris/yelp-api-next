@@ -24,28 +24,6 @@ export default function Cuisines({}: Props) {
   const router = useRouter();
   const { searchOptions } = router.query;
   const result = getResults();
-  // const localChoices = getLocalChoices();
-
-  // const rankings = leftList.reduce((currentValue, currentIndex) => ({
-  //   ...object,
-  //   [key]: [],
-  // }));
-
-  // function isDisabled() {
-  //   if (left.includes("") || right.includes("")) {
-  //     return true;
-  //   } else return false;
-  // }
-
-  // function getLocalChoices() {
-  //   if (typeof window !== "undefined") {
-  //     const location = localStorage.getItem("location");
-  //     const radius = Number(localStorage.getItem("radius")) * 1609;
-  //     const prices = JSON.parse(localStorage.getItem("price") ?? "");
-
-  //     return { location, radius, prices };
-  //   }
-  // }
 
   function getResults() {
     // transform ranking array into object
@@ -103,8 +81,8 @@ export default function Cuisines({}: Props) {
 
   return (
     <div className="cuisine__chooser">
-      <header>
-        <h1 className="title">Pick your top cuisines!</h1>
+      <header className="cuisine__header">
+        <h1 className="title">Cuisines!</h1>
         <button className="action-btn" type="button" onClick={handleClick}>
           {currentUser === "left" ? "Next User" : "Restaurants"}
         </button>

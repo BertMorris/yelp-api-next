@@ -82,8 +82,8 @@ export default function DisplayRestaurants({
 
   return (
     <div className="restaurant__chooser">
-      <header>
-        <h1 className="title">Rank these {cuisine} restaurants!</h1>
+      <header className="cuisine__header">
+        <h1 className="title">{cuisine} restaurants!</h1>
         <button className="action-btn" type="button" onClick={handleClick}>
           {currentUser === "left" ? "Next User" : "Get Result"}
         </button>
@@ -111,7 +111,7 @@ export async function getServerSideProps({
       Authorization: `Bearer ${process.env.API_AUTH}`,
     },
   };
-  const url = `https://api.yelp.com/v3/businesses/search?${searchOptions}&term=${cuisine}&categories=restaurant&sort_by=best_match&limit=10`;
+  const url = `https://api.yelp.com/v3/businesses/search?${searchOptions}&term=${cuisine}&categories=restaurant&sort_by=best_match&limit=5`;
   console.log(url);
   const response = await fetch(url, options);
   const data = await response.json();

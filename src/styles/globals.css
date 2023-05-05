@@ -126,8 +126,9 @@ body {
   border-radius: var(--sm-border);
   background-color: var(--blue);
   color: white;
-  padding: 1rem;
+  padding: 0.5rem;
   font-weight: 600;
+  font-size: 0.75rem;
 }
 
 .action-btn:hover {
@@ -246,7 +247,14 @@ li {
 
 .title {
   text-align: center;
+  font-size: 1.5rem;
 }
+
+.cuisine__chooser {
+  margin: auto;
+  max-width: 400px;
+}
+
 .cuisine__list {
   margin: auto;
   display: flex;
@@ -258,8 +266,15 @@ li {
 }
 
 .cuisine {
+  max-width: 400px;
   border: 2px solid black;
   border-radius: 10px;
+  padding: 1rem;
+}
+
+.cuisine__header {
+  display: flex;
+  justify-content: space-evenly;
   padding: 1rem;
 }
 
@@ -292,6 +307,7 @@ li {
   background-color: rgba(0, 0, 0, 0.6);
   background-blend-mode: darken;
   color: white;
+  box-shadow: 0px 0px 5px 1px rgb(194, 194, 194);
 }
 
 .cuisine-card__title {
@@ -300,11 +316,17 @@ li {
   padding: none;
 }
 
+/* **** PICKING RESTAURANT **** */
+.restaurant__chooser {
+  margin: auto;
+  max-width: 400px;
+}
+
 /* **** RESTAURANT CARD ***** */
 .rest-card {
   display: flex;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px 1px rgb(165, 164, 164);
+  box-shadow: 0px 0px 5px 1px rgb(194, 194, 194);
 }
 
 .rest-card__image-container {
@@ -360,13 +382,13 @@ li {
 
 .item-container {
   width: 100%;
-  margin: 0.5rem;
+  margin: 2px;
 }
 
 /* **** RESULT CARD **** */
 .result__title {
   text-align: center;
-  padding: 1.5rem;
+  padding: 1rem;
 }
 .result-card {
   margin: auto;
@@ -382,8 +404,17 @@ li {
   border-radius: 10px 10px 0 0;
 }
 
+.result-card__lower {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  align-items: center;
+}
+
 .result-card__title {
   font-size: 1.5rem;
+  margin: 3px 5x;
 }
 
 .result-card__price {
