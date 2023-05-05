@@ -1,6 +1,94 @@
+/* 
+  ANDY BELL CSS RESET
+*/
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 
+  END CSS RESET
+*/
+
 :root {
   --blue: hsl(217, 100%, 57%);
+  --blue-dark: hsl(217, 100%, 20%);
   --blue-hover: hsl(217, 100%, 66%);
+  --green: hsl(138, 86%, 38%);
+  --green-hover: hsl(138, 97%, 45%);
   --red: hsl(0, 100%, 50%);
   --red-hover: hsl(0, 55%, 72%);
   --grey: hsl(0, 0%, 90%);
@@ -10,6 +98,7 @@
 
 body {
   font-family: "Raleway", sans-serif;
+  margin: 0;
 }
 
 .offscreen {
@@ -19,7 +108,7 @@ body {
 
 .navigate-btn {
   padding: 1rem;
-  background-color: var(--blue);
+  background-color: var(--blue-dark);
   border: none;
   border-radius: var(--sm-border);
   font-size: 2rem;
@@ -35,7 +124,7 @@ body {
 .action-btn {
   border: none;
   border-radius: var(--sm-border);
-  background-color: var(--red);
+  background-color: var(--blue);
   color: white;
   padding: 1rem;
   font-weight: 600;
@@ -43,7 +132,7 @@ body {
 
 .action-btn:hover {
   cursor: pointer;
-  background-color: var(--red-hover);
+  background-color: var(--blue-hover);
 }
 
 .lock-btn-group {
@@ -53,12 +142,22 @@ body {
 }
 
 /* **** SEARCH OPTIONS **** */
+.options__container {
+  margin: auto;
+  max-width: 400px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 1px rgb(165, 164, 164);
+}
 .options__header {
   margin: auto;
+  color: white;
+  background-color: var(--blue-dark);
+  border-radius: 0 0 20px 20px;
 }
 
 .options__title {
   text-align: center;
+  padding: 1rem;
 }
 
 .options__form {
@@ -66,7 +165,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 5em;
-  padding: 5rem;
+  padding: 2rem;
 }
 
 .button {
@@ -80,13 +179,13 @@ body {
 }
 
 .button.selected {
-  background-color: var(--red);
+  background-color: var(--green);
   color: #fff;
   font-weight: bold;
 }
 
 .button:hover {
-  background-color: rgb(223, 144, 144);
+  background-color: var(--green-hover);
   color: #fff;
 }
 
@@ -130,14 +229,14 @@ body {
   appearance: none;
   width: 25px;
   height: 25px;
-  background: var(--red);
+  background: var(--blue);
   cursor: pointer;
 }
 
 .radius__slider::-moz-range-thumb {
   width: 25px;
   height: 25px;
-  background: var(--red);
+  background: var(--blue);
   cursor: pointer;
 }
 /* **** PICKING CUISINE ***** */

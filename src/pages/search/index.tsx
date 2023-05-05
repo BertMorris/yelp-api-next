@@ -140,7 +140,7 @@ export default function SearchOptions({}: Props) {
   };
 
   return (
-    <>
+    <div className="options__container">
       <header className="options__header">
         <h1 className="options__title">Starters</h1>
       </header>
@@ -171,7 +171,7 @@ export default function SearchOptions({}: Props) {
 
         <div className="options__radius">
           <label className="radius__label" htmlFor="radius">
-            Search within {selectedRadius} miles
+            Within {selectedRadius} miles
           </label>
           <input
             className="radius__slider"
@@ -224,6 +224,6 @@ export default function SearchOptions({}: Props) {
           View cuisines!
         </button>
       </form>
-    </>
+    </div>
   );
 }
