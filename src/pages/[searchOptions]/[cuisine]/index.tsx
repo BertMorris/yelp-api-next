@@ -93,7 +93,11 @@ export default function DisplayRestaurants({
         >
           Lock in
         </button>
-        <button className="navigate-btn" onClick={getRestaurant}>
+        <button
+          className="navigate-btn"
+          disabled={!(leftUserLocked && rightUserLocked)}
+          onClick={getRestaurant}
+        >
           Get Result
         </button>
         <button
