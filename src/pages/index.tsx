@@ -40,10 +40,13 @@ export default function Home() {
   // }
 
   return (
-    <div>
+    <center className="home">
       <h1>
-        Testing google places api to find restaurants by location and keyword
+        Welcome to Yelp!
       </h1>
+      <div>
+        Testing google places api to find restaurants by location and keyword
+      </div>
       {/* <h2>
         Lat: {userLocation?.lat ?? "no latitude data"} Long:{" "}
         {userLocation?.long ?? "no long data"}
@@ -71,7 +74,8 @@ export default function Home() {
           Pub
         </button>
       </div> */}
-      <Link href={"/search"}>Choose Cuisine</Link>
-    </div>
+      <br /><br />
+      <Link href={"/search"}  className="button">Choose Cuisine</Link>
+    </center>
   );
 }
