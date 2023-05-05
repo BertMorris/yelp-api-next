@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { ChangeEventHandler, MouseEventHandler, useState } from "react";
 
 type Props = {};
 type Coords = {
@@ -14,6 +14,8 @@ export default function SearchOptions({}: Props) {
   const [selectedPrices, setSelectedPrices] = useState<number[]>([1, 2, 3, 4]);
 
   const router = useRouter();
+
+  function isDisabled() {}
 
   function getLocation() {
     const successCallback = (position: GeolocationPosition) => {
@@ -42,10 +44,6 @@ export default function SearchOptions({}: Props) {
     } else {
       setSelectedPrices([...selectedPrices, option]);
     }
-
-    console.log(selectedPrices);
-
-    // console.log(containsFour);
   };
 
   const handleLocationChange = (event: any) => {
@@ -85,6 +83,62 @@ export default function SearchOptions({}: Props) {
     router.push(`${locationString()}${optionsString}`);
   };
 
+  const EnterLocation = ({
+    stringLocation,
+    handleLocationChange,
+  }: {
+    stringLocation: string;
+    handleLocationChange: ChangeEventHandler<HTMLInputElement>;
+  }) => {
+    return (
+      <div>
+        <label className="offscreen" htmlFor="location">
+          Enter Location:
+        </label>
+        <input
+          className="location__input"
+          type="text"
+          id="location"
+          name="location"
+          placeholder="City, State or Zip"
+          value={stringLocation ?? ""}
+          onChange={handleLocationChange}
+        />
+      </div>
+    );
+  };
+
+  const LocationOptions = ({
+    getLocation,
+    stringLocation,
+    handleLocationChange,
+  }: {
+    getLocation: MouseEventHandler<HTMLButtonElement>;
+    stringLocation: string | null;
+    handleLocationChange: ChangeEventHandler<HTMLInputElement>;
+  }) => {
+    return (
+      <div className="options__location">
+        <button className="action-btn" type="button" onClick={getLocation}>
+          Get Location
+        </button>
+        <span> or </span>
+        <label className="offscreen" htmlFor="location">
+          Enter Location:
+        </label>
+        <input
+          className="location__input"
+          type="text"
+          id="location"
+          name="location"
+          placeholder="City, State or Zip"
+          value={stringLocation ?? ""}
+          onChange={handleLocationChange}
+        />
+      </div>
+    );
+  };
+
   return (
     <>
       <header className="options__header">
@@ -92,24 +146,29 @@ export default function SearchOptions({}: Props) {
       </header>
 
       <form className="options__form">
-        <div className="options__location">
-          <button className="action-btn" type="button" onClick={getLocation}>
-            Get Location
-          </button>
-          <span> or </span>
-          <label className="offscreen" htmlFor="location">
-            Enter Location:
-          </label>
-          <input
-            className="location__input"
-            type="text"
-            id="location"
-            name="location"
-            placeholder="City, State or Zip"
-            value={stringLocation ?? ""}
-            onChange={handleLocationChange}
-          />
-        </div>
+        {coordLocation ? (
+          <h3>Using current location</h3>
+        ) : (
+          <div className="options__location">
+            <button className="action-btn" type="button" onClick={getLocation}>
+              Get Location
+            </button>
+            <span> or </span>
+            <label className="offscreen" htmlFor="location">
+              Enter Location:
+            </label>
+            <input
+              className="location__input"
+              type="text"
+              id="location"
+              name="location"
+              placeholder="City, State or Zip"
+              value={stringLocation ?? ""}
+              onChange={handleLocationChange}
+            />
+          </div>
+        )}
+
         <div className="options__radius">
           <label className="radius__label" htmlFor="radius">
             Search within {selectedRadius} miles

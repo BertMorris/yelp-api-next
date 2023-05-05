@@ -18,7 +18,7 @@ body {
 }
 
 .navigate-btn {
-  padding: 2rem;
+  padding: 1rem;
   background-color: var(--blue);
   border: none;
   border-radius: var(--sm-border);
@@ -49,6 +49,7 @@ body {
 .lock-btn-group {
   display: flex;
   justify-content: space-evenly;
+  align-items: flex-end;
 }
 
 /* **** SEARCH OPTIONS **** */
@@ -154,7 +155,7 @@ li {
   justify-content: center;
   align-items: center;
   text-align: center;
-  gap: 2em;
+  gap: 1rem;
 }
 
 .cuisine {
@@ -179,13 +180,14 @@ li {
 
 .side-by-side {
   display: flex;
-  gap: 2rem;
+  justify-content: center;
+  gap: 3rem;
 }
 
 /* **** CUISINE CARD **** */
 .cuisine-card {
   border-radius: 10px;
-  padding: 1rem;
+  padding: 0.5rem;
   background-position: center;
   background-size: cover;
   background-color: rgba(0, 0, 0, 0.6);
@@ -196,6 +198,7 @@ li {
 .cuisine-card__title {
   text-align: center;
   font-size: 2rem;
+  padding: none;
 }
 
 /* **** RESTAURANT CARD ***** */
@@ -210,25 +213,41 @@ li {
 }
 
 .rest-card__info {
-  padding: 0 1rem;
+  width: 100%;
+  padding: 0 0.5rem;
+  font-size: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .rest-card__title {
+  font-size: 1rem;
 }
 
 .rest-card__yelp {
+  width: 100%;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 0.5rem;
+  padding-bottom: 0.25rem;
 }
 
-.rest-card__link {
-  padding: 0 2rem;
+.rest-card__reviews {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 }
+
+/* .rest-card__link {
+  padding: 0 1rem;
+} */
 
 /* **** DRAG AND DROP SORTABLE LIST **** */
 .list-container {
-  width: 40rem;
+  margin: auto;
+  width: 20rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -237,4 +256,46 @@ li {
 .item-container {
   width: 100%;
   margin: 0.5rem;
+}
+
+/* **** RESULT CARD **** */
+.result__title {
+  text-align: center;
+  padding: 3rem;
+}
+.result-card {
+  margin: auto;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 1px rgb(165, 164, 164);
+}
+
+.result-card__image {
+  border-radius: 10px 10px 0 0;
+}
+
+.result-card__title {
+  font-size: 2rem;
+}
+
+.result-card__reviews {
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.result-card__link {
+  padding-left: 2rem;
+}
+
+.result-card__info {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
 }

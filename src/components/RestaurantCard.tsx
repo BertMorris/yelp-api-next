@@ -26,17 +26,19 @@ export default function RestaurantCard({
       <div className="rest-card__info">
         <h2 className="rest-card__title">{restaurant.name}</h2>
         <div className="rest-card__yelp">
-          <Image
-            src={`/stars/stars_${restaurant.rating
-              .toString()
-              .replace(".", "-")}.png`}
-            alt={`${restaurant.rating} stars`}
-            height="18"
-            width="102"
-          />
-          <span className="rest-card__review-count">
-            {restaurant.review_count} Reviews
-          </span>
+          <div className="rest-card__reviews">
+            <Image
+              src={`/stars/stars_${restaurant.rating
+                .toString()
+                .replace(".", "-")}.png`}
+              alt={`${restaurant.rating} stars`}
+              height="15"
+              width="90"
+            />
+            <span className="rest-card__review-count">
+              {restaurant.review_count}
+            </span>
+          </div>
           <a className="rest-card__link" href={restaurant.url}>
             <Image
               src="/yelp_logo.svg"

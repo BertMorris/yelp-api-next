@@ -10,13 +10,20 @@ type Props = {
     display_phone: string;
     review_count: number;
     rating: number;
-    display_address: string[];
+    location: { display_address: string[] };
     price: string;
   };
 };
 
 export default function Result({ data }: Props) {
-  return <ResultCard data={data} />;
+  return (
+    <>
+      <h1 className="result__title">
+        On this occasion, you will be dining at..
+      </h1>
+      <ResultCard data={data} />
+    </>
+  );
 }
 
 export async function getServerSideProps({
