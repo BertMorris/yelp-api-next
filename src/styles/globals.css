@@ -1,7 +1,139 @@
+:root {
+  --blue: hsl(217, 100%, 57%);
+  --blue-hover: hsl(217, 100%, 66%);
+  --red: hsl(0, 100%, 50%);
+  --red-hover: hsl(0, 55%, 72%);
+  --grey: hsl(0, 0%, 90%);
+  --white: white;
+  --sm-border: 10px;
+}
+
 body {
   font-family: "Raleway", sans-serif;
 }
 
+.offscreen {
+  position: absolute;
+  left: -10000px;
+}
+
+.navigate-btn {
+  padding: 2rem;
+  background-color: var(--blue);
+  border: none;
+  border-radius: var(--sm-border);
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--white);
+}
+
+.navigate-btn:hover {
+  cursor: pointer;
+  background-color: var(--blue-hover);
+}
+
+.action-btn {
+  border: none;
+  border-radius: var(--sm-border);
+  background-color: var(--red);
+  color: white;
+  padding: 1rem;
+  font-weight: 600;
+}
+
+.action-btn:hover {
+  cursor: pointer;
+  background-color: var(--red-hover);
+}
+
+/* **** SEARCH OPTIONS **** */
+.options__header {
+  margin: auto;
+}
+
+.options__title {
+  text-align: center;
+}
+
+.options__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5em;
+  padding: 5rem;
+}
+
+.button {
+  background-color: var(--grey);
+  color: #333;
+  border: none;
+  border-radius: var(--sm-border);
+  padding: 10px 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.button.selected {
+  background-color: var(--red);
+  color: #fff;
+  font-weight: bold;
+}
+
+.button:hover {
+  background-color: rgb(223, 144, 144);
+  color: #fff;
+}
+
+.options__location {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.location__input {
+  background-color: var(--grey);
+  border: none;
+  border-radius: var(--sm-border);
+  padding: 1rem;
+}
+
+.options__radius {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.radius__slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 25px;
+  background: var(--grey);
+  border-radius: var(--sm-border);
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+.radius__slider:hover {
+  opacity: 1;
+}
+
+.radius__slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: var(--red);
+  cursor: pointer;
+}
+
+.radius__slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: var(--red);
+  cursor: pointer;
+}
 /* **** PICKING CUISINE ***** */
 li {
   list-style: none;
@@ -43,31 +175,6 @@ li {
 .side-by-side {
   display: flex;
   gap: 2rem;
-}
-.button {
-  background-color: #fff;
-  color: #333;
-  border: 2px solid #333;
-  padding: 10px 20px;
-  margin-right: 10px;
-  cursor: pointer;
-}
-
-.button.selected {
-  background-color: rgb(239, 120, 200);
-  color: #fff;
-}
-
-.button:hover {
-  background-color: rgb(239, 120, 200);
-  color: #fff;
-}
-
-.options__form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
 }
 
 /* **** CUISINE CARD **** */

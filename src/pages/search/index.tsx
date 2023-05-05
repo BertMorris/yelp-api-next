@@ -10,7 +10,7 @@ type Coords = {
 export default function SearchOptions({}: Props) {
   const [coordLocation, setCoordLocation] = useState<Coords | null>(null);
   const [stringLocation, setStringLocation] = useState<string | null>(null);
-  const [selectedRadius, setSelectedRadius] = useState(1);
+  const [selectedRadius, setSelectedRadius] = useState(10);
   const [selectedPrices, setSelectedPrices] = useState<number[]>([1, 2, 3, 4]);
 
   const router = useRouter();
@@ -87,36 +87,47 @@ export default function SearchOptions({}: Props) {
 
   return (
     <>
-      <h1>Begin your restaurant search!</h1>
-      <form className="options__form">
-        <button className="action-btn" type="button" onClick={getLocation}>
-          Get Location
-        </button>
-        <span>or</span>
-        <label htmlFor="location">Enter Location:</label>
-        <input
-          type="text"
-          id="location"
-          name="location"
-          placeholder="e.g. New York City"
-          value={stringLocation ?? ""}
-          onChange={handleLocationChange}
-        />
-        <label htmlFor="radius">Search Radius:</label>
-        <select
-          id="radius"
-          name="radius"
-          value={selectedRadius}
-          onChange={handleRadiusChange}
-        >
-          <option value={1}>1 mile</option>
-          <option value={10}>10 miles</option>
-          <option value={25}>25 miles</option>
-          <option value={50}>50 miles</option>
-          <option value={100}>100 miles</option>
-        </select>
+      <header className="options__header">
+        <h1 className="options__title">Starters</h1>
+      </header>
 
-        <div className="button-group">
+      <form className="options__form">
+        <div className="options__location">
+          <button className="action-btn" type="button" onClick={getLocation}>
+            Get Location
+          </button>
+          <span> or </span>
+          <label className="offscreen" htmlFor="location">
+            Enter Location:
+          </label>
+          <input
+            className="location__input"
+            type="text"
+            id="location"
+            name="location"
+            placeholder="City, State or Zip"
+            value={stringLocation ?? ""}
+            onChange={handleLocationChange}
+          />
+        </div>
+        <div className="options__radius">
+          <label className="radius__label" htmlFor="radius">
+            Search within {selectedRadius} miles
+          </label>
+          <input
+            className="radius__slider"
+            type="range"
+            id="radius"
+            name="radius"
+            min="5"
+            max="20"
+            step="1"
+            value={selectedRadius}
+            onChange={handleRadiusChange}
+          />
+        </div>
+
+        <div className="options__price">
           <button
             className={`button ${selectedPrices.includes(1) ? "selected" : ""}`}
             type="button"
@@ -146,14 +157,14 @@ export default function SearchOptions({}: Props) {
             $$$$
           </button>
         </div>
+        <button
+          className="navigate-btn"
+          type="button"
+          onClick={handleRankCuisines}
+        >
+          View cuisines!
+        </button>
       </form>
-      <button
-        className="navigate-btn"
-        type="button"
-        onClick={handleRankCuisines}
-      >
-        Rank cuisines!
-      </button>
     </>
   );
 }
