@@ -75,13 +75,6 @@ export default function DisplayRestaurants({
     router.push(`/result/${result}`);
   }
 
-  // console.log(`Params: ${params}`);
-  // console.log(`Location: ${location}`);
-  // console.log(`Term: ${term}`);
-  // console.log(`Response: ${res}`);
-  // console.log(`Data: ${JSON.stringify(data)}`);
-  // console.log(`Left list: ${leftList}`);
-
   return (
     <>
       <h1 className="title">Rank these {cuisine} restaurants!</h1>
@@ -113,16 +106,6 @@ export default function DisplayRestaurants({
         <RestaurantDndList itemList={leftList} setItemList={setLeftList} />
         <RestaurantDndList itemList={rightList} setItemList={setRightList} />
       </div>
-
-      {/* <ul className="flex flex-col gap-2">
-        {data.businesses.map((item: Restaurant) => (
-          <li key={item.id}>
-            <RestaurantCard
-              restaurant={item}
-            />
-          </li>
-        ))}
-      </ul> */}
     </>
   );
 }
