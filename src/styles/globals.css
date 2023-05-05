@@ -247,7 +247,7 @@ li {
 
 .title {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 .cuisine__chooser {
@@ -276,6 +276,7 @@ li {
   display: flex;
   justify-content: space-evenly;
   padding: 1rem;
+  gap: 0.25rem;
 }
 
 .cuisine__title {
