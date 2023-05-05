@@ -20,6 +20,8 @@ export default function DisplayRestaurants({
 }) {
   const [leftList, setLeftList] = useState(data.businesses);
   const [rightList, setRightList] = useState(data.businesses);
+  const [leftUserLocked, setLeftUserLocked] = useState(false);
+  const [rightUserLocked, setRightUserLocked] = useState(false);
 
   const router = useRouter();
 
@@ -82,10 +84,27 @@ export default function DisplayRestaurants({
 
   return (
     <>
-      <h1>Rank these {cuisine} restaurants!</h1>
-      <button className="navigate-btn" onClick={getRestaurant}>
-        Get Result
-      </button>
+      <h1 className="title">Rank these {cuisine} restaurants!</h1>
+      <div className="lock-btn-group">
+        <button
+          className="action-btn"
+          type="button"
+          onClick={() => setLeftUserLocked(true)}
+        >
+          Lock in
+        </button>
+        <button className="navigate-btn" onClick={getRestaurant}>
+          Get Result
+        </button>
+        <button
+          className="action-btn"
+          type="button"
+          onClick={() => setRightUserLocked(true)}
+        >
+          Lock in
+        </button>
+      </div>
+
       <div className="side-by-side">
         <RestaurantDndList itemList={leftList} setItemList={setLeftList} />
         <RestaurantDndList itemList={rightList} setItemList={setRightList} />

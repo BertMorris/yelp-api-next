@@ -19,6 +19,8 @@ type Props = {};
 export default function Cuisines({}: Props) {
   const [leftList, setLeftList] = useState<string[]>(CUISINES);
   const [rightList, setRightList] = useState<string[]>(CUISINES);
+  const [leftUserLocked, setLeftUserLocked] = useState(false);
+  const [rightUserLocked, setRightUserLocked] = useState(false);
 
   const router = useRouter();
   const { searchOptions } = router.query;
@@ -120,9 +122,29 @@ export default function Cuisines({}: Props) {
   return (
     <div className="cuisine__chooser">
       <h1 className="title">Pick your top cuisines!</h1>
-      <button className="navigate-btn" onClick={getRestaurants}>
-        Get Restaurants
-      </button>
+      <div className="lock-btn-group">
+        <button
+          className="action-btn"
+          type="button"
+          onClick={() => setLeftUserLocked(true)}
+        >
+          Lock in
+        </button>
+        <button
+          className="navigate-btn"
+          disabled={!(leftUserLocked && rightUserLocked)}
+          onClick={getRestaurants}
+        >
+          Get Restaurants
+        </button>
+        <button
+          className="action-btn"
+          type="button"
+          onClick={() => setRightUserLocked(true)}
+        >
+          Lock in
+        </button>
+      </div>
 
       {/* <div className="side-by-side">
         <ul className="cuisine__list">

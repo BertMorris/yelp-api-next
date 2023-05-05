@@ -46,6 +46,11 @@ body {
   background-color: var(--red-hover);
 }
 
+.lock-btn-group {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 /* **** SEARCH OPTIONS **** */
 .options__header {
   margin: auto;
