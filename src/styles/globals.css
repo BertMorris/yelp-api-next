@@ -101,6 +101,9 @@ body {
   margin: 0;
 }
 
+img {
+}
+
 .offscreen {
   position: absolute;
   left: -10000px;
@@ -307,6 +310,12 @@ li {
   box-shadow: 0px 0px 10px 1px rgb(165, 164, 164);
 }
 
+.rest-card__image-container {
+  height: 75px;
+  width: 125px;
+  object-fit: cover;
+}
+
 .rest-card__image {
   border-radius: 10px 0 0 10px;
 }
@@ -317,7 +326,7 @@ li {
   font-size: 0.75rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .rest-card__title {
@@ -360,7 +369,7 @@ li {
 /* **** RESULT CARD **** */
 .result__title {
   text-align: center;
-  padding: 2rem;
+  padding: 1.5rem;
 }
 .result-card {
   margin: auto;
@@ -377,7 +386,7 @@ li {
 }
 
 .result-card__title {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .result-card__price {
@@ -398,6 +407,6 @@ li {
   display: flex;
   align-items: center;
   gap: 2rem;
-  padding: 1rem;
+  padding: 0.5rem;
   text-align: center;
 }

@@ -16,13 +16,16 @@ export default function RestaurantCard({
 }) {
   return (
     <div className="rest-card">
-      <Image
-        className="rest-card__image"
-        src={restaurant.image_url}
-        alt={`${restaurant.name} image`}
-        height="100"
-        width="100"
-      ></Image>
+      <div className="rest-card__image-container">
+        <Image
+          className="rest-card__image"
+          src={restaurant.image_url}
+          alt={`${restaurant.name} image`}
+          height="75"
+          width="125"
+        ></Image>
+      </div>
+
       <div className="rest-card__info">
         <h2 className="rest-card__title">{restaurant.name}</h2>
         <div className="rest-card__yelp">
