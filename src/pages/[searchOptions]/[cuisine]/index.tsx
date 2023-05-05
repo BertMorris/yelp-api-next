@@ -111,7 +111,7 @@ export async function getServerSideProps({
       Authorization: `Bearer ${process.env.API_AUTH}`,
     },
   };
-  const url = `https://api.yelp.com/v3/businesses/search?${searchOptions}&term=${cuisine}&categories=restaurant&sort_by=best_match&limit=5`;
+  const url = `https://api.yelp.com/v3/businesses/search?${searchOptions}&term=${cuisine}&categories=restaurant&sort_by=best_match&limit=6`;
   console.log(url);
   const response = await fetch(url, options);
   const data = await response.json();

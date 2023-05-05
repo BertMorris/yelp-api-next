@@ -142,6 +142,19 @@ body {
   align-items: flex-end;
 }
 
+/* **** LANDING PAGE **** */
+.landing__container {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  max-width: 400px;
+  height: 100vh;
+  margin: auto;
+}
+
+.landing__title {
+}
+
 /* **** SEARCH OPTIONS **** */
 .options__container {
   margin: auto;
