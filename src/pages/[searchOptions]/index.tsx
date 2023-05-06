@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { useRouter } from "next/router";
 import CuisineDndList from "../../components/CuisineDndList";
 
@@ -19,7 +19,7 @@ type Props = {};
 export default function Cuisines({}: Props) {
   const [leftList, setLeftList] = useState<string[]>(CUISINES);
   const [rightList, setRightList] = useState<string[]>(CUISINES);
-  const [currentUser, setCurrentUser] = useState("left");
+  const [currentUser, setCurrentUser] = useState<string | null>(null);
 
   const router = useRouter();
   const { searchOptions } = router.query;
@@ -79,6 +79,25 @@ export default function Cuisines({}: Props) {
     } else getRestaurants();
   }
 
+  const Instructions = ({
+    setCurrentUser,
+  }: {
+    setCurrentUser: Dispatch<SetStateAction<string | null>>;
+  }) => {
+    return (
+      <div className="instructions">
+        <p className="instructions__text">Drag and drop to rank each option!</p>
+        <button
+          className="navigate-btn"
+          type="button"
+          onClick={() => setCurrentUser("left")}
+        >
+          View Cuisines!
+        </button>
+      </div>
+    );
+  };
+
   return (
     <div className="cuisine__chooser">
       <header className="cuisine__header">
@@ -87,7 +106,9 @@ export default function Cuisines({}: Props) {
           {currentUser === "left" ? "Next User" : "Restaurants"}
         </button>
       </header>
-      {currentUser === "left" ? (
+      {!currentUser ? (
+        <Instructions setCurrentUser={setCurrentUser} />
+      ) : currentUser === "left" ? (
         <CuisineDndList itemList={leftList} setItemList={setLeftList} />
       ) : (
         <CuisineDndList itemList={rightList} setItemList={setRightList} />
