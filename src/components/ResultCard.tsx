@@ -22,8 +22,8 @@ export default function ResultCard({ data }: Props) {
         className="result-card__image"
         src={data.image_url}
         alt={`${data.name} image`}
-        height="400"
-        width="400"
+        height="300"
+        width="300"
       />
       <div className="result-card__lower">
         <h2 className="result-card__title">{data.name}</h2>

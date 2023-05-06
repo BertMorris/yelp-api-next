@@ -18,9 +18,12 @@ type Props = {
 export default function Result({ data }: Props) {
   return (
     <div className="cuisine__chooser">
-      <h1 className="result__title">
-        On this occasion, you will be dining at..
-      </h1>
+      <header className="cuisine__header">
+        <h1 className="result__title">
+          On this occasion, you will be dining at..
+        </h1>
+      </header>
+
       <ResultCard data={data} />
     </div>
   );
