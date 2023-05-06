@@ -9,6 +9,7 @@ type Coords = {
 };
 
 export default function SearchOptions({}: Props) {
+  const [gettingLocation, setGettingLocation] = useState(false);
   const [coordLocation, setCoordLocation] = useState<Coords | null>(null);
   const [stringLocation, setStringLocation] = useState<string | null>(null);
   const [selectedRadius, setSelectedRadius] = useState(10);
@@ -17,6 +18,7 @@ export default function SearchOptions({}: Props) {
   const router = useRouter();
 
   function getLocation() {
+    setGettingLocation(true);
     const successCallback = (position: GeolocationPosition) => {
       console.log("getLocation success callback triggered");
       console.log(position);
@@ -33,6 +35,7 @@ export default function SearchOptions({}: Props) {
     } else {
       console.log("User did not allow location access");
     }
+    setGettingLocation(false);
   }
 
   const handleOptionClick = (option: any) => {
@@ -88,12 +91,14 @@ export default function SearchOptions({}: Props) {
 
   return (
     <div className="cuisine__chooser">
-      <header className="options__header">
-        <h1 className="options__title">Search options!</h1>
+      <header className="cuisine__header">
+        <h1 className="cuisine__title">Search options!</h1>
       </header>
 
       <form className="options__form">
-        {coordLocation ? (
+        {gettingLocation ? (
+          <h3>getting location...</h3>
+        ) : coordLocation ? (
           <h3>Using current location</h3>
         ) : (
           <div className="options__location">
