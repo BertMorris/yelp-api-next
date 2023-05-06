@@ -87,9 +87,9 @@ export default function SearchOptions({}: Props) {
   };
 
   return (
-    <div className="options__container">
+    <div className="cuisine__chooser">
       <header className="options__header">
-        <h1 className="options__title">Starters!</h1>
+        <h1 className="options__title">Search options!</h1>
       </header>
 
       <form className="options__form">
@@ -168,7 +168,7 @@ export default function SearchOptions({}: Props) {
           type="button"
           onClick={handleRankCuisines}
         >
-          View cuisines!
+          Rank cuisines!
         </button>
       </form>
     </div>

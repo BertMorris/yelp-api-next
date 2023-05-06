@@ -82,7 +82,7 @@ export default function Cuisines({}: Props) {
   return (
     <div className="cuisine__chooser">
       <header className="cuisine__header">
-        <h1 className="title">Cuisines!</h1>
+        <h1 className="cuisine__title">Cuisines!</h1>
         <button className="action-btn" type="button" onClick={handleClick}>
           {currentUser === "left" ? "Next User" : "Restaurants"}
         </button>
